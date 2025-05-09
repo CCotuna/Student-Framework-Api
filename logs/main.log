@@ -146,3 +146,54 @@
 2025-05-09 19:12:31,964 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - Received response with status code: 204
 2025-05-09 19:12:31,966 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - Response Body: 
 2025-05-09 19:12:31,968 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - User successfully deleted, no content returned.
+2025-05-09 19:21:27,392 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:21:27,493 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Sending POST request to path: /api/login
+2025-05-09 19:21:27,493 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Request Body: email=eve.holt@reqres.in, password=cityslicka
+2025-05-09 19:21:28,324 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Received Response with Status Code: 200
+2025-05-09 19:21:28,328 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Response Body: {"token":"QpwL5tke4Pnpja7X4"}
+2025-05-09 19:28:28,354 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:28:28,449 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Sending NEGATIVE POST request to path: /api/login
+2025-05-09 19:28:28,449 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Request Body: {email=eve.holt@reqres.in}
+2025-05-09 19:28:29,252 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Received Response with Status Code: 400
+2025-05-09 19:28:29,259 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Response Body: {"error":"Missing password"}
+2025-05-09 19:28:29,422 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Error message: Missing password
+2025-05-09 19:41:47,103 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:41:47,210 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Sending POST request to path: /api/register
+2025-05-09 19:41:47,210 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Request Body: email=eve.holt@reqres.in, password=pistol
+2025-05-09 19:41:48,051 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Received Response with Status Code: 200
+2025-05-09 19:41:48,055 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Response Body: {"id":4,"token":"QpwL5tke4Pnpja7X4"}
+2025-05-09 19:48:55,764 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:48:55,855 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Sending negative REGISTER POST request to path: /api/register
+2025-05-09 19:48:55,855 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Request Body: {email=eve.holt@reqres.in}
+2025-05-09 19:48:56,680 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Received Response with Status Code: 400
+2025-05-09 19:48:56,684 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Response Body: {"error":"Missing password"}
+2025-05-09 19:48:56,846 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Error message: Missing password
+2025-05-09 19:51:20,217 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:51:20,315 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Sending POST request to path: /api/login
+2025-05-09 19:51:20,315 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Request Body: email=eve.holt@reqres.in, password=cityslicka
+2025-05-09 19:51:21,151 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Received Response with Status Code: 200
+2025-05-09 19:51:21,154 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Response Body: {"token":"QpwL5tke4Pnpja7X4"}
+2025-05-09 19:51:21,158 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Sending negative POST request to path: /api/login
+2025-05-09 19:51:21,159 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Request Body: {email=eve.holt@reqres.in}
+2025-05-09 19:51:21,395 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Received Response with Status Code: 400
+2025-05-09 19:51:21,395 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Response Body: {"error":"Missing password"}
+2025-05-09 19:51:21,566 [main] INFO com.example.studentframeworkapi.client.api.auth.LoginClient - Error message: Missing password
+2025-05-09 19:51:21,567 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Sending POST request to path: /api/register
+2025-05-09 19:51:21,567 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Request Body: email=eve.holt@reqres.in, password=pistol
+2025-05-09 19:51:21,744 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Received Response with Status Code: 200
+2025-05-09 19:51:21,745 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Response Body: {"id":4,"token":"QpwL5tke4Pnpja7X4"}
+2025-05-09 19:51:21,746 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Sending negative REGISTER POST request to path: /api/register
+2025-05-09 19:51:21,746 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Request Body: {email=eve.holt@reqres.in}
+2025-05-09 19:51:21,976 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Received Response with Status Code: 400
+2025-05-09 19:51:21,976 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Response Body: {"error":"Missing password"}
+2025-05-09 19:51:21,987 [main] INFO com.example.studentframeworkapi.client.api.auth.RegisterClient - Error message: Missing password
