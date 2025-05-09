@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.studentframeworkapi.client.api.PostClient.createUserWithToken;
-import static com.example.studentframeworkapi.client.user.GetUser.getUser;
+import static com.example.studentframeworkapi.client.user.CreateUser.createUser;
+import static com.example.studentframeworkapi.client.user.GetUser.*;
 
 public class UserTests extends BaseTest {
 
@@ -20,11 +20,21 @@ public class UserTests extends BaseTest {
         requestBody.put("name", "Chen");
         requestBody.put("job", "Software Developer");
 
-        createUserWithToken("/api/users", 201, requestBody, AUTH_TOKEN);
+        createUser("/api/users", 201, requestBody, AUTH_TOKEN);
     }
 
     @Test
     void testGetUser() {
         getUser("/api/users/2", 200, AUTH_TOKEN);
+    }
+
+    @Test
+    void testGetAllUsers() {
+        getUsers("/api/users?page=2", 200, AUTH_TOKEN);
+    }
+
+    @Test
+    void testUserNotFound() {
+        getUserNotFound("/api/users/23", 404, AUTH_TOKEN);
     }
 }

@@ -7,6 +7,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
+import java.util.List;
+import java.util.Map;
+
 import static com.example.studentframeworkapi.client.api.ApiClient.validateResponse;
 
 public class GetClient {
@@ -49,6 +52,35 @@ public class GetClient {
             String avatar = response.jsonPath().getString("data.avatar");
             Assert.assertNotNull(avatar, "User avatar is missing");
             Assert.assertTrue(avatar.startsWith("https://"), "User avatar URL is invalid: " + avatar);
+        }
+
+        return response.asString();
+    }
+
+    public static String getUsers(String endpoint, int expectedStatusCode, String token) {
+        logger.info("Sending GET request to endpoint: {}", endpoint);
+
+        Response response = RestAssured.given()
+                .baseUri(JsonConfigReader.getConfig().baseUrl)
+                .header("x-api-key", token)
+                .when()
+                .log().all()
+                .get(endpoint);
+
+        logger.info("Received response with status code: {}", response.getStatusCode());
+        logger.info("Response Body (Pretty Printed): \n{}", response.prettyPrint());
+
+        validateResponse(response, expectedStatusCode);
+
+        List<Map<String, Object>> users = response.jsonPath().getList("data");
+        Assert.assertFalse(users.isEmpty(), "Expected at least one user");
+        for (Map<String, Object> user : users) {
+            Assert.assertNotNull(user.get("id"), "User id is missing");
+            Assert.assertNotNull(user.get("email"), "User email is missing");
+            Assert.assertNotNull(user.get("first_name"), "User first name is missing");
+            Assert.assertNotNull(user.get("last_name"), "User last name is missing");
+            Assert.assertNotNull(user.get("avatar"), "User avatar is missing");
+
         }
 
         return response.asString();
