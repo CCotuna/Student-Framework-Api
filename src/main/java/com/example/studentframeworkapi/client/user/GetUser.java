@@ -14,4 +14,8 @@ public class GetUser {
     public static String getUserNotFound(String path, int statusCode, String token) {
         return GetClient.getUserWithToken(path, statusCode, token);
     }
+
+    public static String getUserDelayed(String path, int statusCode, String token) {
+        return GetClient.getUserWithDelay(path, statusCode, token);
+    }
 }

@@ -86,4 +86,37 @@ public class GetClient {
         return response.asString();
     }
 
+    public static String getUserWithDelay(String path, int expectedStatusCode, String token) {
+        logger.info("Sending GET request to path: {} with delay", path);
+
+        Response response = RestAssured.given()
+                .baseUri(JsonConfigReader.getConfig().baseUrl)
+                .header("x-api-key", token)
+                .header("Content-Type", "application/json")
+                .when()
+                .get(path);
+
+        logger.info("Received Response with Status Code: {}", response.getStatusCode());
+        logger.info("Response Body: {}", response.asString());
+
+        Assert.assertEquals(response.getStatusCode(), expectedStatusCode,
+                "Expected status code " + expectedStatusCode + ", but got " + response.getStatusCode());
+
+        int perPage = response.jsonPath().getInt("per_page");
+        int total = response.jsonPath().getInt("total");
+        List<Map<String, Object>> users = response.jsonPath().getList("data");
+
+        Assert.assertTrue(perPage > 0, "Expected per_page > 0");
+        Assert.assertTrue(total >= perPage, "Total users should be >= per_page");
+        Assert.assertEquals(users.size(), perPage, "Number of users returned should match per_page");
+
+        Map<String, Object> firstUser = users.get(0);
+        Assert.assertNotNull(firstUser.get("id"), "First user id should not be null");
+        Assert.assertNotNull(firstUser.get("email"), "First user email should not be null");
+        Assert.assertNotNull(firstUser.get("first_name"), "First user first name should not be null");
+        Assert.assertNotNull(firstUser.get("avatar"), "First user avatar should not be null");
+
+        return response.asString();
+    }
+
 }
