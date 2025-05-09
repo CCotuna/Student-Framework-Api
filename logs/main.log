@@ -1,38 +1,38 @@
 2025-05-09 17:48:44,281 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 17:48:44,365 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
-2025-05-09 17:48:44,365 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Request Body: None (GET request does not have body)
-2025-05-09 17:48:45,061 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
-2025-05-09 17:48:45,066 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 17:48:44,365 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
+2025-05-09 17:48:44,365 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 17:48:45,061 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
+2025-05-09 17:48:45,066 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
 2025-05-09 17:58:41,983 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 17:58:43,105 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users?page=2
-2025-05-09 17:58:43,295 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 401
-2025-05-09 17:58:43,302 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
-2025-05-09 17:58:43,302 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Request Body: None (GET request does not have body)
-2025-05-09 17:58:43,376 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
-2025-05-09 17:58:43,377 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 17:58:43,105 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users?page=2
+2025-05-09 17:58:43,295 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 401
+2025-05-09 17:58:43,302 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
+2025-05-09 17:58:43,302 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 17:58:43,376 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
+2025-05-09 17:58:43,377 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
 2025-05-09 17:59:42,082 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 17:59:42,170 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users?page=2
-2025-05-09 17:59:42,917 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
+2025-05-09 17:59:42,170 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users?page=2
+2025-05-09 17:59:42,917 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
 2025-05-09 18:00:23,207 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 18:00:23,291 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users?page=2
-2025-05-09 18:00:23,863 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
+2025-05-09 18:00:23,291 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users?page=2
+2025-05-09 18:00:23,863 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
 2025-05-09 18:04:38,917 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
 2025-05-09 18:04:48,387 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 18:04:49,364 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users?page=2
-2025-05-09 18:04:49,445 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
-2025-05-09 18:04:49,447 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Response Body (Pretty Printed): 
+2025-05-09 18:04:49,364 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users?page=2
+2025-05-09 18:04:49,445 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
+2025-05-09 18:04:49,447 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Response Body (Pretty Printed):
 {
     "page": 2,
     "per_page": 6,
@@ -87,14 +87,49 @@
         "text": "Tired of writing endless social media content? Let Content Caddy generate it for you."
     }
 }
-2025-05-09 18:04:49,455 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
-2025-05-09 18:04:49,455 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Request Body: None (GET request does not have body)
-2025-05-09 18:04:49,524 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 200
-2025-05-09 18:04:49,524 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 18:04:49,455 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users/2 with token: reqres-free-v1
+2025-05-09 18:04:49,455 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:04:49,524 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 200
+2025-05-09 18:04:49,524 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Response Body: {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
 2025-05-09 18:09:23,528 [main] INFO org.testng.internal.Utils - [TestNG] Running:
   /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
 
-2025-05-09 18:09:23,627 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Sending GET request to endpoint: /api/users/23 with token: reqres-free-v1
-2025-05-09 18:09:23,628 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Request Body: None (GET request does not have body)
-2025-05-09 18:09:24,480 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Received response with status code: 404
-2025-05-09 18:09:24,487 [main] INFO com.example.studentframeworkapi.client.api.GetClient - Response Body: {}
+2025-05-09 18:09:23,627 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Sending GET request to endpoint: /api/users/23 with token: reqres-free-v1
+2025-05-09 18:09:23,628 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:09:24,480 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Received response with status code: 404
+2025-05-09 18:09:24,487 [main] INFO com.example.studentframeworkapi.client.api.user.GetClient - Response Body: {}
+2025-05-09 18:29:04,244 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 18:29:04,347 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Sending GET request to endpoint: /api/unkown/2 with token: reqres-free-v1
+2025-05-09 18:29:04,347 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:29:05,384 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 200
+2025-05-09 18:29:05,392 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {"data":{"id":2,"name":"fuchsia rose","year":2001,"color":"#C74375","pantone_value":"17-2031"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 18:29:18,271 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 18:29:18,356 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Sending GET request to endpoint: /api/unkown/5 with token: reqres-free-v1
+2025-05-09 18:29:18,356 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:29:19,319 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 200
+2025-05-09 18:29:19,326 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {"data":{"id":5,"name":"tigerlily","year":2004,"color":"#E2583E","pantone_value":"17-1456"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 18:44:36,750 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 18:44:36,854 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Sending GET request to endpoint: /api/unkown with token: reqres-free-v1
+2025-05-09 18:44:36,854 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:44:37,691 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 200
+2025-05-09 18:44:37,699 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"name":"cerulean","year":2000,"color":"#98B2D1","pantone_value":"15-4020"},{"id":2,"name":"fuchsia rose","year":2001,"color":"#C74375","pantone_value":"17-2031"},{"id":3,"name":"true red","year":2002,"color":"#BF1932","pantone_value":"19-1664"},{"id":4,"name":"aqua sky","year":2003,"color":"#7BC4C4","pantone_value":"14-4811"},{"id":5,"name":"tigerlily","year":2004,"color":"#E2583E","pantone_value":"17-1456"},{"id":6,"name":"blue turquoise","year":2005,"color":"#53B0AE","pantone_value":"15-5217"}],"support":{"url":"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}}
+2025-05-09 18:47:18,846 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 18:47:18,949 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Sending GET request to endpoint: /api/unkown/23 with token: reqres-free-v1
+2025-05-09 18:47:18,949 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:47:19,774 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 404
+2025-05-09 18:47:19,780 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {}
+2025-05-09 18:47:35,678 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 18:47:35,766 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Sending GET request to endpoint: /api/unknown/23 with token: reqres-free-v1
+2025-05-09 18:47:35,766 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
+2025-05-09 18:47:36,353 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 404
+2025-05-09 18:47:36,358 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {}

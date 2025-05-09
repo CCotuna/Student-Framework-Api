@@ -1,4 +1,4 @@
-package com.example.studentframeworkapi.client.api;
+package com.example.studentframeworkapi.client.api.user;
 
 import com.example.studentframeworkapi.util.JsonConfigReader;
 import io.restassured.RestAssured;
@@ -57,7 +57,7 @@ public class GetClient {
         return response.asString();
     }
 
-    public static String getUsers(String endpoint, int expectedStatusCode, String token) {
+    public static String getAllUsers(String endpoint, int expectedStatusCode, String token) {
         logger.info("Sending GET request to endpoint: {}", endpoint);
 
         Response response = RestAssured.given()

@@ -1,6 +1,6 @@
 package com.example.studentframeworkapi.client.user;
 
-import com.example.studentframeworkapi.client.api.PostClient;
+import com.example.studentframeworkapi.client.api.user.PostClient;
 
 import java.util.Map;
 

@@ -1,15 +1,23 @@
-package com.example.studentframeworkapi.client.api;
+package com.example.studentframeworkapi.client.api.user;
 
+import com.example.studentframeworkapi.client.api.resource.GetClient;
 import com.example.studentframeworkapi.util.JsonConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
 public class PostClient {
+    private static final Logger logger = LogManager.getLogger(GetClient.class);
 
     public static String createUserWithToken(String endpoint, int statusCode, Map<String, Object> body, String token) {
+
+        logger.info("Sending POST request to endpoint: {} with body: {}", endpoint, body);
+        logger.info("Using token: {}", token);
+
         Response response = RestAssured.given()
                 .baseUri(JsonConfigReader.getConfig().baseUrl)
                 .header("x-api-key", token)
@@ -18,6 +26,9 @@ public class PostClient {
                 .when()
                 .log().all()
                 .post(endpoint);
+
+        logger.info("Received response with status code: {}", response.getStatusCode());
+        logger.info("Response Body: {}", response.asString());
 
         if (response.getStatusCode() != statusCode) {
             throw new RuntimeException("API Error: Expected status code " + statusCode + " - received " + response.getStatusCode() + ". Response: " + response.asString());
