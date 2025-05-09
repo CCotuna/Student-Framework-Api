@@ -14,4 +14,22 @@ public class ApiClient {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
+    public static void validateResponse(Response response, int expectedStatusCode) {
+        if (response.getStatusCode() != expectedStatusCode) {
+            throw new RuntimeException("API Error: Expected status code " + expectedStatusCode + " - received " + response.getStatusCode() + ". Response: " + response.asString());
+        }
+
+        if (response.getStatusCode() == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+            throw new RuntimeException("Server Error: " + response.asString());
+        }
+
+        if (response.getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+            throw new RuntimeException("Bad Request: " + response.asString());
+        }
+
+        if (!response.getHeader("Content-Type").contains("application/json")) {
+            throw new RuntimeException("Unexpected content type: " + response.getHeader("Content-Type"));
+        }
+    }
 }
