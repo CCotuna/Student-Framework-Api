@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="CONSOLE">
+            <PatternLayout pattern="%p - %m%n"/>
+        </Console>
+        <File name="MAIN" fileName="logs/main.log">
+            <PatternLayout pattern="%d [%t] %p %c - %m%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="CONSOLE" level="INFO"/>
+            <AppenderRef ref="MAIN"/>
+        </Root>
+
+        <Logger name="com.example.assureduserapi" level="INFO">
+            <AppenderRef ref="MAIN"/>
+        </Logger>
+    </Loggers>
+</Configuration>
