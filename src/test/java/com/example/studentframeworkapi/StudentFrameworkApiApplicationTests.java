@@ -8,6 +8,7 @@ class StudentFrameworkApiApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("Yo!");
     }
 
 }

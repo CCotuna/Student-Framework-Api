@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://reqres.in",
+  "browser": "arc",
+  "timeout": 20
+}
