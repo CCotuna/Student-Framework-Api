@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.studentframeworkapi.client.api.user.PostClient.loadUsersFromJson;
 import static com.example.studentframeworkapi.client.user.CreateUser.createUser;
 import static com.example.studentframeworkapi.client.user.DeleteUser.deleteUser;
 import static com.example.studentframeworkapi.client.user.GetUser.*;
@@ -48,5 +49,17 @@ public class UserTests extends BaseTest {
     @Test
     void testDeleteUser() {
         deleteUser("/api/users/2", 204, AUTH_TOKEN);
+    }
+
+    @Test
+    void testCreateMultipleUsersFromJson() {
+        String endpoint = "/api/users";
+        int expectedStatusCode = 201;
+
+        var users = loadUsersFromJson("constants/users.json");
+
+        for (Map<String, Object> user : users) {
+            createUser(endpoint, expectedStatusCode, user, AUTH_TOKEN);
+        }
     }
 }

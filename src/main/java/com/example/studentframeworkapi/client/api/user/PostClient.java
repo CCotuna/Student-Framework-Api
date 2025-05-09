@@ -1,13 +1,20 @@
 package com.example.studentframeworkapi.client.api.user;
 
 import com.example.studentframeworkapi.client.api.resource.GetClient;
+import com.example.studentframeworkapi.client.user.CreateUser;
 import com.example.studentframeworkapi.util.JsonConfigReader;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public class PostClient {
@@ -55,5 +62,18 @@ public class PostClient {
         }
 
         return response.asString();
+    }
+
+    public static List<Map<String, Object>> loadUsersFromJson(String filePath) {
+        ObjectMapper mapper = new ObjectMapper();
+        try (InputStream is = PostClient.class.getClassLoader().getResourceAsStream(filePath)) {
+            if (is == null) {
+                throw new FileNotFoundException("File not found: " + filePath);
+            }
+            return mapper.readValue(is, new TypeReference<>() {});
+        } catch (IOException e) {
+            logger.error("Failed to read users from JSON file", e);
+            throw new RuntimeException(e);
+        }
     }
 }
