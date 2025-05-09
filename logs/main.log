@@ -133,3 +133,16 @@
 2025-05-09 18:47:35,766 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Request Body: None (GET request does not have body)
 2025-05-09 18:47:36,353 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Received response with status code: 404
 2025-05-09 18:47:36,358 [main] INFO com.example.studentframeworkapi.client.api.resource.GetClient - Response Body: {}
+2025-05-09 19:00:20,355 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:00:20,452 [main] INFO com.example.studentframeworkapi.client.api.user.PutClient - Sending PUT request to update user at path: /api/users/2. New Name: Chen, New Job: Software Developer
+2025-05-09 19:00:21,220 [main] INFO com.example.studentframeworkapi.client.api.user.PutClient - Received response with status code: 200
+2025-05-09 19:00:21,228 [main] INFO com.example.studentframeworkapi.client.api.user.PutClient - Response Body: {"name":"Chen","job":"Software Developer","updatedAt":"2025-05-09T16:00:21.182Z"}
+2025-05-09 19:12:31,098 [main] INFO org.testng.internal.Utils - [TestNG] Running:
+  /Users/calin/Library/Caches/JetBrains/IntelliJIdea2024.3/temp-testng-customsuite.xml
+
+2025-05-09 19:12:31,195 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - Sending DELETE request to endpoint: /api/users/2 with token: reqres-free-v1
+2025-05-09 19:12:31,964 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - Received response with status code: 204
+2025-05-09 19:12:31,966 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - Response Body: 
+2025-05-09 19:12:31,968 [main] INFO com.example.studentframeworkapi.client.api.user.DeleteClient - User successfully deleted, no content returned.

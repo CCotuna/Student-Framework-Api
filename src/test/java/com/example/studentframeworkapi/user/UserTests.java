@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.studentframeworkapi.client.user.CreateUser.createUser;
+import static com.example.studentframeworkapi.client.user.DeleteUser.deleteUser;
 import static com.example.studentframeworkapi.client.user.GetUser.*;
+import static com.example.studentframeworkapi.client.user.UpdateUser.updateUser;
 
 public class UserTests extends BaseTest {
 
@@ -36,5 +38,15 @@ public class UserTests extends BaseTest {
     @Test
     void testUserNotFound() {
         getUserNotFound("/api/users/23", 404, AUTH_TOKEN);
+    }
+
+    @Test
+    void testUpdateUser() {
+        updateUser("/api/users/2", 200, AUTH_TOKEN, "Chen", "Software Developer");
+    }
+
+    @Test
+    void testDeleteUser() {
+        deleteUser("/api/users/2", 204, AUTH_TOKEN);
     }
 }

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class PostClient {
-    private static final Logger logger = LogManager.getLogger(GetClient.class);
+    private static final Logger logger = LogManager.getLogger(PostClient.class);
 
     public static String createUserWithToken(String endpoint, int statusCode, Map<String, Object> body, String token) {
 

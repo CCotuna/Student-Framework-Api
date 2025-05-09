@@ -57,7 +57,7 @@ public class GetClient {
         return response.asString();
     }
 
-    public static String getAllUsers(String endpoint, int expectedStatusCode, String token) {
+    public static String getAllUsers(String endpoint, int statusCode, String token) {
         logger.info("Sending GET request to endpoint: {}", endpoint);
 
         Response response = RestAssured.given()
@@ -70,7 +70,7 @@ public class GetClient {
         logger.info("Received response with status code: {}", response.getStatusCode());
         logger.info("Response Body (Pretty Printed): \n{}", response.prettyPrint());
 
-        validateResponse(response, expectedStatusCode);
+        validateResponse(response, statusCode);
 
         List<Map<String, Object>> users = response.jsonPath().getList("data");
         Assert.assertFalse(users.isEmpty(), "Expected at least one user");
