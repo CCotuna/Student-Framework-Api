@@ -1,10 +1,10 @@
 package com.example.studentframeworkapi.client.user;
 
 import com.example.studentframeworkapi.client.api.user.DeleteClient;
-import com.example.studentframeworkapi.client.api.user.PutClient;
+import io.restassured.response.Response;
 
 public class DeleteUser {
-    public static String deleteUser(String path, int statusCode, String token) {
+    public static Response deleteUser(String path, int statusCode, String token) {
         return DeleteClient.deleteCurrentUser(path, statusCode, token);
     }
 }

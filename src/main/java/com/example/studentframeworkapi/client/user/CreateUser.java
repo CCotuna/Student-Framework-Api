@@ -1,19 +1,12 @@
 package com.example.studentframeworkapi.client.user;
 
 import com.example.studentframeworkapi.client.api.user.PostClient;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import com.example.studentframeworkapi.model.user.UserRequest;
+import com.example.studentframeworkapi.model.user.UserResponse;
 
 public class CreateUser {
-    public static String createUser(String path, int statusCode, Map<String, Object> requestBody, String token){
+
+    public static UserResponse createUser(String path, int statusCode, UserRequest requestBody, String token) {
         return PostClient.createUserWithToken(path, statusCode, requestBody, token);
     }
-
-
 }

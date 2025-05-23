@@ -1,7 +1,7 @@
 package com.example.studentframeworkapi.client.api.user;
 
-import com.example.studentframeworkapi.client.api.resource.GetClient;
-import com.example.studentframeworkapi.client.user.CreateUser;
+import com.example.studentframeworkapi.model.user.UserRequest;
+import com.example.studentframeworkapi.model.user.UserResponse;
 import com.example.studentframeworkapi.util.JsonConfigReader;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,16 +20,15 @@ import java.util.Map;
 public class PostClient {
     private static final Logger logger = LogManager.getLogger(PostClient.class);
 
-    public static String createUserWithToken(String endpoint, int statusCode, Map<String, Object> body, String token) {
-
-        logger.info("Sending POST request to endpoint: {} with body: {}", endpoint, body);
+    public static UserResponse createUserWithToken(String endpoint, int statusCode, UserRequest requestBody, String token) {
+        logger.info("Sending POST request to endpoint: {} with body: {}", endpoint, requestBody);
         logger.info("Using token: {}", token);
 
         Response response = RestAssured.given()
                 .baseUri(JsonConfigReader.getConfig().baseUrl)
                 .header("x-api-key", token)
                 .header("Content-Type", "application/json")
-                .body(body)
+                .body(requestBody)
                 .when()
                 .log().all()
                 .post(endpoint);
@@ -41,19 +40,31 @@ public class PostClient {
             throw new RuntimeException("API Error: Expected status code " + statusCode + " - received " + response.getStatusCode() + ". Response: " + response.asString());
         }
 
-        if (!response.getHeader("Content-Type").contains("application/json")) {
-            throw new RuntimeException("Unexpected content type: " + response.getHeader("Content-Type"));
+        String contentType = response.getHeader("Content-Type");
+        if (contentType == null || !contentType.contains("application/json")) {
+            if (response.getStatusCode() != HttpStatus.SC_NO_CONTENT) {
+                throw new RuntimeException("Unexpected or missing content type: " + contentType + ". Expected JSON for status code: " + response.getStatusCode());
+            } else {
+                logger.info("Content-Type header is missing, but status code is 204 No Content, which is expected.");
+            }
         }
 
-        if (response.getStatusCode() == HttpStatus.SC_CREATED) {
-            int userId = response.jsonPath().getInt("id");
-            if (userId <= 0) {
+        UserResponse userResponse = null;
+        if (response.getStatusCode() == HttpStatus.SC_CREATED || response.getStatusCode() == HttpStatus.SC_OK) {
+            userResponse = response.as(UserResponse.class);
+            logger.info("Deserialized UserResponse: {}", userResponse);
+
+            if (userResponse.getId() <= 0) {
                 throw new RuntimeException("Invalid user ID in the response.");
             }
-
-            String userName = response.jsonPath().getString("name");
-            if (userName == null || userName.isEmpty()) {
+            if (userResponse.getName() == null || userResponse.getName().isEmpty()) {
                 throw new RuntimeException("User name is missing in the response.");
+            }
+            if (userResponse.getJob() == null || userResponse.getJob().isEmpty()) {
+                throw new RuntimeException("User job is missing in the response.");
+            }
+            if (userResponse.getCreatedAt() == null || userResponse.getCreatedAt().isEmpty()) {
+                throw new RuntimeException("Created at timestamp is missing in the response.");
             }
         }
 
@@ -61,7 +72,7 @@ public class PostClient {
             throw new RuntimeException("Response time exceeded acceptable limit.");
         }
 
-        return response.asString();
+        return userResponse;
     }
 
     public static List<Map<String, Object>> loadUsersFromJson(String filePath) {

@@ -1,5 +1,7 @@
 package com.example.studentframeworkapi.client.api.resource;
 
+import com.example.studentframeworkapi.model.resource.ListResourceResponse;
+import com.example.studentframeworkapi.model.resource.SingleResourceResponse;
 import com.example.studentframeworkapi.util.JsonConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -15,9 +17,8 @@ import static com.example.studentframeworkapi.client.api.ApiClient.validateRespo
 public class GetClient {
     private static final Logger logger = LogManager.getLogger(GetClient.class);
 
-    public static String getResourceWithToken(String endpoint, int statusCode, String token) {
+    public static SingleResourceResponse getSingleResourceParsed(String endpoint, int expectedStatusCode, String token) {
         logger.info("Sending GET request to endpoint: {} with token: {}", endpoint, token);
-        logger.info("Request Body: None (GET request does not have body)");
 
         Response response = RestAssured.given()
                 .baseUri(JsonConfigReader.getConfig().baseUrl)
@@ -27,56 +28,23 @@ public class GetClient {
                 .get(endpoint);
 
         logger.info("Received response with status code: {}", response.getStatusCode());
-        logger.info("Response Body: {}", response.asString());
 
-        validateResponse(response, statusCode);
+        validateResponse(response, expectedStatusCode);
 
         if (response.getStatusCode() == 200) {
-            Map<String, Object> data = response.jsonPath().getMap("data");
-            Assert.assertNotNull(data, "Data is missing");
-
-            if (data.containsKey("id")) {
-                String id = data.get("id").toString();
-                Assert.assertNotNull(id, "ID is missing");
-                Assert.assertTrue(Integer.parseInt(id) > 0, "ID should be greater than 0");
-            }
-
-            if (data.containsKey("name")) {
-                String name = data.get("name").toString();
-                Assert.assertNotNull(name, "Name is missing");
-                Assert.assertFalse(name.isEmpty(), "Name should not be empty");
-            }
-
-            if (data.containsKey("color")) {
-                String color = data.get("color").toString();
-                Assert.assertNotNull(color, "Color is missing");
-                Assert.assertTrue(color.matches("^#([A-Fa-f0-9]{6})$"), "Color format is invalid: " + color);
-            }
-
-            if (data.containsKey("pantone_value")) {
-                String pantoneValue = data.get("pantone_value").toString();
-                Assert.assertNotNull(pantoneValue, "Pantone value is missing");
-            }
-
-            Map<String, String> support = response.jsonPath().getMap("support");
-            if (support != null) {
-                String supportUrl = support.get("url");
-                Assert.assertNotNull(supportUrl, "Support URL is missing");
-                Assert.assertTrue(supportUrl.startsWith("https://"), "Support URL is invalid: " + supportUrl);
-
-                String supportText = support.get("text");
-                Assert.assertNotNull(supportText, "Support text is missing");
-                Assert.assertFalse(supportText.isEmpty(), "Support text should not be empty");
-            }
+            SingleResourceResponse singleResourceResponse = response.as(SingleResourceResponse.class);
+            logger.info("Deserialized SingleResourceResponse: {}", singleResourceResponse);
+            return singleResourceResponse;
         }
 
-        return response.asString();
+        if(expectedStatusCode != 200) {
+            throw new IllegalStateException("getSingleResourceParsed should be used for successful responses (200 OK). Received: " + response.getStatusCode());
+        }
+        return response.as(SingleResourceResponse.class);
     }
 
-
-    public static String getAllResources(String endpoint, int statusCode, String token) {
+    public static ListResourceResponse getAllResourcesParsed(String endpoint, int expectedStatusCode, String token) {
         logger.info("Sending GET request to endpoint: {} with token: {}", endpoint, token);
-        logger.info("Request Body: None (GET request does not have body)");
 
         Response response = RestAssured.given()
                 .baseUri(JsonConfigReader.getConfig().baseUrl)
@@ -86,46 +54,31 @@ public class GetClient {
                 .get(endpoint);
 
         logger.info("Received response with status code: {}", response.getStatusCode());
-        logger.info("Response Body: {}", response.asString());
 
-        validateResponse(response, statusCode);
+        validateResponse(response, expectedStatusCode);
 
         if (response.getStatusCode() == 200) {
-            List<Map<String, Object>> resources = response.jsonPath().getList("data");
-            Assert.assertNotNull(resources, "Data is missing");
-
-            for (Map<String, Object> resource : resources) {
-                String id = resource.get("id").toString();
-                Assert.assertNotNull(id, "ID is missing");
-                Assert.assertTrue(Integer.parseInt(id) > 0, "ID should be greater than 0");
-
-                String name = resource.get("name").toString();
-                Assert.assertNotNull(name, "Name is missing");
-                Assert.assertFalse(name.isEmpty(), "Name should not be empty");
-
-                String color = resource.get("color").toString();
-                Assert.assertNotNull(color, "Color is missing");
-                Assert.assertTrue(color.matches("^#([A-Fa-f0-9]{6})$"), "Color format is invalid: " + color);
-
-                String pantoneValue = resource.get("pantone_value").toString();
-                Assert.assertNotNull(pantoneValue, "Pantone value is missing");
-            }
-
-            Map<String, String> support = response.jsonPath().getMap("support");
-            if (support != null) {
-                String supportUrl = support.get("url");
-                Assert.assertNotNull(supportUrl, "Support URL is missing");
-                Assert.assertTrue(supportUrl.startsWith("https://"), "Support URL is invalid: " + supportUrl);
-
-                String supportText = support.get("text");
-                Assert.assertNotNull(supportText, "Support text is missing");
-                Assert.assertFalse(supportText.isEmpty(), "Support text should not be empty");
-            }
+            ListResourceResponse listResourceResponse = response.as(ListResourceResponse.class);
+            logger.info("Deserialized ListResourceResponse: {}", listResourceResponse);
+            return listResourceResponse;
         }
 
-        return response.asString();
+        if(expectedStatusCode != 200) {
+            throw new IllegalStateException("getAllResourcesParsed should be used for successful responses (200 OK). Received: " + response.getStatusCode());
+        }
+        return response.as(ListResourceResponse.class);
     }
 
+    public static Response getResourceResponse(String endpoint, String token) {
+        logger.info("Sending GET request to endpoint: {} with token: {}", endpoint, token);
 
+        Response response = RestAssured.given()
+                .baseUri(JsonConfigReader.getConfig().baseUrl)
+                .header("x-api-key", token)
+                .when()
+                .get(endpoint);
 
+        logger.info("Received raw response with status code: {}", response.getStatusCode());
+        return response;
+    }
 }

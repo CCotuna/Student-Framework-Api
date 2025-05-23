@@ -1,5 +1,7 @@
 package com.example.studentframeworkapi.client.api.auth;
 
+import com.example.studentframeworkapi.model.auth.RegisterErrorResponse;
+import com.example.studentframeworkapi.model.auth.RegisterResponse;
 import com.example.studentframeworkapi.util.JsonConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -14,7 +16,7 @@ import static com.example.studentframeworkapi.client.api.ApiClient.isValidEmail;
 public class RegisterClient {
     private static final Logger logger = LogManager.getLogger(RegisterClient.class);
 
-    public static String signUpUser(String path, int statusCode, Map<String, Object> body, String token) {
+    public static RegisterResponse signUpUser(String path, int statusCode, Map<String, Object> body, String token) {
         String email = (String) body.get("email");
         String password = (String) body.get("password");
 
@@ -26,9 +28,9 @@ public class RegisterClient {
             throw new RuntimeException("Invalid email format: " + email);
         }
 
-        if (password.length() < 4) {
-            logger.error("Password must have at least 4 characters.");
-            throw new RuntimeException("Password must have at least 4 characters.");
+        if (password == null || password.length() < 4) {
+            logger.error("Password must not be null, and have at least 4 characters.");
+            throw new RuntimeException("Password must not be null, and have at least 4 characters.");
         }
 
         Response response = RestAssured.given()
@@ -40,29 +42,28 @@ public class RegisterClient {
                 .post(path);
 
         logger.info("Received Response with Status Code: {}", response.getStatusCode());
-        logger.info("Response Body: {}", response.asString());
 
         if (response.getStatusCode() != statusCode) {
             logger.error("Expected status code {} but got {}. Response: {}", statusCode, response.getStatusCode(), response.asString());
             throw new RuntimeException("Expected status code " + statusCode + " but got " + response.getStatusCode() + ". Response: " + response.asString());
         }
 
-        String responseBody = response.asString();
-        if (!responseBody.contains("id")) {
-            logger.error("Response does not contain an 'id'. Response: {}", responseBody);
-            throw new RuntimeException("Response does not contain an 'id'. Response: " + responseBody);
+        RegisterResponse registerResponse = response.as(RegisterResponse.class);
+        logger.info("Deserialized Register Response: {}", registerResponse);
+
+        if (registerResponse.getId() == null) {
+            logger.error("Response doesn't contain an 'id'. Full Response: {}", response.asString());
+            throw new RuntimeException("Response doesn't contain an 'id'. Full Response: " + response.asString());
         }
-        if (!responseBody.contains("token")) {
-            logger.error("Response does not contain a 'token'. Response: {}", responseBody);
-            throw new RuntimeException("Response does not contain a 'token'. Response: " + responseBody);
+        if (registerResponse.getToken() == null || registerResponse.getToken().isEmpty()) {
+            logger.error("Response doesn't contain a token or token is empty. Full Response: {}", response.asString());
+            throw new RuntimeException("Response doesn't contain a token or token is empty. Full Response: " + response.asString());
         }
 
-        return response.asString();
+        return registerResponse;
     }
 
-    public static String signUpUserFailed(String path, int expectedStatusCode, Map<String, Object> body, String token) {
-        String email = (String) body.get("email");
-
+    public static RegisterErrorResponse signUpUserFailed(String path, int expectedStatusCode, Map<String, Object> body, String token) {
         logger.info("Sending negative REGISTER POST request to path: {}", path);
         logger.info("Request Body: {}", body);
 
@@ -75,17 +76,19 @@ public class RegisterClient {
                 .post(path);
 
         logger.info("Received Response with Status Code: {}", response.getStatusCode());
-        logger.info("Response Body: {}", response.asString());
 
         Assert.assertEquals(response.getStatusCode(), expectedStatusCode,
-                "Expected status code " + expectedStatusCode + ", but got " + response.getStatusCode());
+                "Expected status code " + expectedStatusCode + ", but got " + response.getStatusCode() + ". Response: " + response.asString());
+
+        RegisterErrorResponse errorResponse = response.as(RegisterErrorResponse.class);
+        logger.info("Deserialized Register Error Response: {}", errorResponse);
 
         if (expectedStatusCode == 400) {
-            String error = response.jsonPath().getString("error");
-            Assert.assertNotNull(error, "Expected error message but none was returned.");
-            logger.info("Error message: {}", error);
+            Assert.assertNotNull(errorResponse.getError(), "Expected error message.");
+            Assert.assertFalse(errorResponse.getError().isEmpty(), "Error message from deserialized object is empty.");
+            logger.info("Error message from deserialized object: {}", errorResponse.getError());
         }
 
-        return response.asString();
+        return errorResponse;
     }
 }
